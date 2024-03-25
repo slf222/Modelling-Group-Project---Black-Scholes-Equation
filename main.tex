@@ -65,25 +65,23 @@
 \usepackage{tabularx}
 
 %_______end of preamble and start the document proper________________
-
-
+\title{The Black-Scholes Equation and Numerical Solutions in \\ Financial Mathematics}
+\author{Elliot Lawrence (710046334), Tom Bailey-Burnley (710041568), Sofia Fernandez-Hearn (720005519),\\
+Bertie Tufnell (70003485), Daisy Macharg (720052934), Jeremy Brown (710045257)}
+\date{2024}
 \begin{document}
+\maketitle
 
-{\large\bf MTH2005 Modelling: Theory and Practice }
+\section{Abstract}
  
-\vspace{4mm} 
+\newpage
 
-{\Large\bf Numerical Solutions in Financial Mathematics - The Black-Scholes Equation - Dr Ben Snow }
+\tableofcontents
 
-\vspace{1mm}
-
-Group 1: Elliot Lawrence (710046334), Tom Bailey-Burnley (710041568), Sofia Fernandez-Hearn (720005519), Bertie Tufnell (70003485), Daisy Macharg (720052934), Jeremy Brown (710045257)
-
-\vspace{3mm}
-
-\section{Week 1 Tasks} % To be removed when tasks below are completed
-
+\newpage
 \section{Introduction}
+
+\subsection{Purpose of the Project}
 
 The Black-Scholes equation is a fundamental finance equation which can be derived from the roots of mathematical principles, it serves as a key use in understanding the complexities of pricing dynamics of options. This report focuses on numerically solving the Black-Scholes equation, aiming to understand how option values change with varying current prices (£5, £15, £20). 
 
@@ -91,9 +89,9 @@ In addition to deriving the Black-Scholes equation, we look deeper to its relati
 
 At the end of this report, we also aim to assess the accuracy and stability of our solutions we have calculated and give examples showing the impact of how various scenarios can influence option prices.
 
+Need to update this
 
-
-\section{What is the Black-Scholes Equation}
+\subsection{What is the Black-Scholes Equation?}
 
 Before introducing the Black-Scholes Equation, lets first define what a call option is. A call option is when you have the right but not the obligation to, purchase a stock at a pre-agreed upon price at a later date. The pre-agreed upon price is known as the strike price.
 
@@ -105,7 +103,7 @@ If the price of the stock rises above \textsterling$10$ to let's say to \textste
 \includegraphics[width=1\linewidth, height=9cm]{Call-option.png}
 \caption{An example of a European Call option}
 \end{figure}
-As we can see the process of exercising a call option is a straight forward process. The real challenge is in, how to decided on the price to sell them at. This issue has baffled people ever since call options were invented, and that's why we have the Black-Scholes equation.
+As we can see the process of exercising a call option is a straight forward process. The real challenge is in, how to decide on the price to sell them at. This issue has baffled people ever since call options were invented, and that's why we have the Black-Scholes equation.
 
 The Black-Scholes equation is a mathematical model used in finance to calculate the theoretical price of European call options.
 
@@ -128,7 +126,9 @@ Where:
 \newpage
 
 
-\section{Derivation of the Black-Scholes Equation}
+\section{Methodology}
+
+\subsection{Derivation of the Black-Scholes Equation}
 
 Before we derive the Black-Scholes Equation, we must introduce the idea of Ito processes.
 Ito processes are a type of stochastic process ,i.e they are a set of random variables describing the evolution of system over time.\ Ito process are stochastic processes which exhibit the Markov property.\ In the context of financial mathematics, the Markov property states that the future value of a financial stock option is independent of the past values it has taken. An example of an Ito process is,
@@ -244,7 +244,7 @@ d \pi =
 \frac{\delta C}{\delta t} + \frac{1}{2}\sigma^2 S^2\frac{\delta^2 C}{\delta S^2}
 \end{pmatrix}dt \phantom{ccc}
 \end{equation*}
-For deriving the Black-Scholes Equation, we must assume there is no Arbitrage. Arbitrage is the process of buying and selling the same stock in different markets to profit from very small difference in the stock price. When we assume there is no Arbitrage we are assuming that the portfolio will grow at a risk free rate, also known as the rate of inflation. As a result we can let $d \pi = r\pi dt$ were $r$ is the risk free rate, which we have assumed over a short period time. From this the Black-Scholes Equation follows:
+For deriving the Black-Scholes Equation, we must assume there is no Arbitrage.\ Arbitrage is the process of buying and selling the same stock in different markets to profit from very small difference in the stock price. When we assume there is no Arbitrage we are assuming that the portfolio will grow at a risk free rate, also known as the rate of inflation. As a result we can let $d \pi = r\pi dt$ were $r$ is the risk free rate, which we have assumed over a short period time. From this the Black-Scholes Equation follows:
 \begin{equation*}
 \pi dt = 
 \setlength{\arraycolsep}{2pt}\begin{pmatrix}
@@ -262,29 +262,9 @@ Equivalently we can say that,
 \frac{\delta C}{\delta t} + \frac{1}{2}\sigma^2 S^2 \frac{\delta ^2 C}{\delta S^2} + rS \frac{\delta C}{\delta S} - rC = 0
 \end{equation*}
 
-\section{How the Black-Scholes Equation relates to the Diffusion Equation}
+\subsection{How the Black-Scholes Equation relates to the Diffusion Equation}
 
-\subsection{Elliot's Draft}
-
-The Black-Scholes equation is a partial differential equation (PDE) that describes the evolution of the option price over time. Its form is similar to the diffusion equation. We can use the descriptions below to see the relationship.
-
-
-The diffusion equation, a fundamental mathematical model, describes the spread of a quantity in space over time. Its basic form is expressed as:
-\[ \frac{\partial u}{\partial t} = D \frac{\partial^2 u}{\partial x^2} \]
-Here, \(u\) signifies the quantity being diffused (e.g., heat), \(t\) denotes time, \(x\) represents space, and \(D\) is the diffusion coefficient. This equation captures how the quantity dynamically propagates through space over time. Analogously, the diffusion process can be likened to the spread of heat in a room, with the diffusion coefficient (\(D\)) determining the rate of heat permeation.
-
-
-In financial mathematics, the Black-Scholes equation serves as a diffusion model for option prices, expressed as:
-\[ \frac{\partial C}{\partial t} + \frac{\sigma^2S^2}{2} \frac{\partial^2 C}{\partial S^2} + rS \frac{\partial C}{\partial S} - rC = 0 \]
-
-The middle term:
-
-\[\frac{\sigma^2S^2}{2} \frac{\partial^2 C}{\partial S^2} \]
-
-Can be seen as the diffusion term in Black-Scholes
-
-Here, \(C\) represents the option price, \(S\) is the current stock price and \(\sigma\) reflects the stock's volatility This equation encapsulates the influences of stock price changes, volatility, and interest rates on option prices over time. Similarly to the diffusion of heat, envisioning the option price (\(C\)) as a dynamic quantity, the stock price (\(S\)) as a spatial variable and the volatility (\(\sigma\)) as the unpredictability in option price movement, . The Black-Scholes equation offers a predictive framework for how option prices evolve over time in response to how it relates to
-
+\
 \newpage
 
 
@@ -386,7 +366,7 @@ F(x,0) = max(e^{\frac{1}{2}(a+1)x }- e^{\frac{1}{2}(a-1)x} , 0)
 An alternative way of converting the Black-Scholes PDE is through using the mathematical properties of the model to adapt it into a diffusion equation without drift. We start with the following variable transformations.
 \[ S = Ke^x \hspace{1.5cm} \tau = \frac{\sigma^2}{2}(T-t) \hspace{1.5cm} C(s,t) = K f(x,\tau)\]
 
-We can then differentiate C in respect to time and using the product rule, find an expression for $\frac{\partial C}{\partial t}$ in terms of $f$, $\tau$ and other cosntants.
+We can then differentiate C in respect to time and using the product rule, find an expression for $\frac{\partial C}{\partial t}$ in terms of $f$, $\tau$ and other constants.
 
 \begin{align*}
     \frac{\partial C}{\partial t} &= K\frac{\partial f}{\partial \tau} \frac{\partial \tau}{\partial t} \\
@@ -420,7 +400,7 @@ We can then substitute these expressions into the original PDE. This will remove
 \frac{\partial f}{\partial \tau} + \frac{ \partial^2 f}{\partial x^2} + (c-1) \frac{\partial f}{\partial x} - cf = 0
 \] At this point, the intital condition has changed to $f(x, 0) = max(e^x -1 , 0)$
 
-This has transformed the Black-Scholes PDE into a diffusion equation with drift, so we can use another transformation of variables to turn it into a diffusion equation without drift. we choose \[f (x, \tau) = e^{ax+b\tau} f(x,\tau)\]  and then find appropriate $a$ and $b$ terms so that the new diffusion equation has no drift.
+This has transformed the Black-Scholes PDE into a diffusion equation with drift, so we can use another transformation of variables to turn it into a diffusion equation without drift. we choose \[f (x, \tau) = e^{ax+b\tau} u(x,\tau)\]  and then find appropriate $a$ and $b$ terms so that the new diffusion equation has no drift.
 
 We have the following derivatives of $f$:
 
@@ -458,24 +438,26 @@ Adapting the initial condition (again) we will also have
 u(x,0) = max(e^{\frac{1}{2}(c+1)x}- e^{\frac{1}{2}(c-1)x} , 0 )
 \]
 
+We also use the previously stated transformations to change the boundary conditions into the new variables so that they can be used in the numerical method.
+
+The boundary condition $C(0,t)=0$ will thus become $u(\tau , x) = 0 $ as $x \rightarrow -\infty$. 
+
+The boundary condition as $S \rightarrow \infty$ was slightly more nuanced as we had to ensure that the boundary condition could be easily adapted into our code. We chose to do this by using a non-homogenous Neumann boundary condition at $\tau = T$.
+
 \newpage
-\section{Week 2 Tasks} % To be removed when tasks below are completed
 
-\section{Crank-Nicholson Scheme} 
+\section{Findings}
 
-\subsection{Elliot's Draft}
+\subsection{Crank-Nicolson Derivation}
 
+The Crank-Nicolson scheme stands out as a robust and stable numerical method compared to both the implicit and explicit methods. This is because small mistakes won't be as impactful in later computations as seen in the implicit and explicit methods. Although this method requires extra computational work and time, it serves as a reliable choice in financial applications where precision takes precedence over speed and where the consequences of errors can be profound.
 
-\subsection{Crank-Nicholson Derivation}
-
-The Crank-Nicholson scheme stands out as a robust and stable numerical method compared to both the implicit and explicit methods. This is because small mistakes won't be as impactful in later computations as seen in the implicit and explicit methods. Although this method requires extra computational work and time, it serves as a reliable choice in financial applications where precision takes precedence over speed and where the consequences of errors can be profound.
-
-The graphical representation below offers a reason why it makes sense the explicit and implicit methods are called what they are. The explicit method uses information at the given time to help predict a future value, and the implicit method uses a value in the future to predict the current value. The Crank Nicholson method uses an amalgamation of these methods. It blends the characteristics of the explicit and implicit methods, providing a balanced numerical method that inherits the strengths of both methodologies.
+The graphical representation below offers a reason why it makes sense the explicit and implicit methods are called what they are. The explicit method uses information at the given time to help predict a future value, and the implicit method uses a value in the future to predict the current value. The Crank Nicolson method uses an amalgamation of these methods. It blends the characteristics of the explicit and implicit methods, providing a balanced numerical method that inherits the strengths of both methodologies.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{Crank-Nicholson-GR.jpg}
-    \caption{Comparison of the explicit, implicit and Crank-Nicholson methods}
+    \caption{Comparison of the explicit, implicit and Crank-Nicolson methods}
     \label{}
 \end{figure}
 
@@ -490,131 +472,296 @@ From the implicit method, it incorporates the idea of:
 \item The stability and accuracy, especially for smaller steps, by considering future time step values in its calculations
 \end{itemize}
 
-The Crank-Nicholson method can be represented as a differential equation
+For a PDE given by:
+
+\begin{equation}
+\frac{\partial u}{\partial t} = F \left( u, x, t, \frac{\partial u}{\partial x}, \frac{\partial^{2}u}{\partial x^{2}} \right)
+\end{equation}
+
+The Crank-Nicolson method can be represented as 
+
+\begin{equation}
+\frac{u_{i}^{n+1} - u_{i}^{n}}{\Delta t} = \frac{1}{2} \left[ F_{i}^{n+1} \left( u, x, t, \frac{\partial u}{\partial x}, \frac{\partial^{2}u}{\partial x^{2}} \right) + F_{i}^{n} \left( u, x, t, \frac{\partial u}{\partial x}, \frac{\partial^{2}u}{\partial x^{2}} \right) \right]
+\end{equation}
+
+
+The left side represents the option values at the next and current time steps respectfully, and f(V) represents the function defining the change in option value. The right side of the equation is an average of the function f(V) evaluated at the current and next time steps. This goes back to the idea that the Crank-Nicolson idea uses the "average" of both the explicit and implicit methods. The \( f(V^n) \) and \( f(V^{n+1}) \) are implicit and explicit methods, respectfully.
+
+
+
+Transforming the Black-Scholes equation to the diffusion equation allows us to effectively apply the Crank-Nicolson method. As derived in the previous section, the transformation gives:
 
 \[
-\frac{{(V_i)^{n+1} - (V_i)^n}}{{\Delta t}} = \frac{1}{2} \left( f(V^n) + f(V^{n+1}) \right)
+\frac{\partial u}{\partial \tau} = \frac{\partial^2 u}{\partial x^2} \;\; \text{for} \;\; -\infty < x < \infty \;\; \text{and} \;\; \tau >0
 \]
 
-The left side represents the option values at the next and current time steps respectfully, and f(V) represents the function defining the change in option value. The right side of the equation is an average of the function f(V) evaluated at the current and next time steps. This goes back to the idea that the Crank-Nicholson idea uses the "average" of both the explicit and implicit methods. The \( f(V^n) \) and \( f(V^{n+1}) \) are implicit and explicit methods, respectfully.
+where \\
 
+$u(x,t)$ represents transformed option value,\\
+$\tau$ represents transformed time variable,\\
+$x$ represents transformed spatial variable.
 
-
-
-
-
-
-\section{Berties CN draft}
-
-BS $\to$ Diffusion equation: $\frac{\partial u}{\partial \tau}=\frac{\partial^2u}{\partial x^2}$\\
-$u$ represents option value
-$\tau$ represents transformed time variable
-$x$ represents transformed spatial variable
+Applying the Crank-Nicolson method to this equation, and applying the second-order centred-difference approximation to the right hand side gives
 
 \begin{align*}
-    \frac{u_i^{j+1}-u+i^j}{\Delta \tau}=\frac{1}{2}\left(\frac{u_{i+1}^{j+1}-2u_i^{j+1}+u_{i-1}^{j+1}}{\Delta x^2}+\frac{u_{i+1}^{j}-2u_i^{j}+u_{i-1}^{j}}{\Delta x^2}\right)
+    \frac{u_i^{n+1}-u_i^n}{\Delta \tau}=\frac{1}{2}\left(\frac{u_{i+1}^{n+1}-2u_i^{n+1}+u_{i-1}^{n+1}}{\Delta x^2}+\frac{u_{i+1}^{n}-2u_i^{n}+u_{i-1}^{n}}{\Delta x^2}\right)
 \end{align*}
 
-Now let $r=\frac{\Delta\tau}{2\Delta x^2}$ (constant), and collect $j+1$ terms on the left and $j$ terms on the right:
+Now, letting $\alpha =\frac{\Delta\tau}{2\Delta x^2}$ (constant), and collecting $n+1$ terms on the left and $n$ terms on the right:
 
 \begin{align*}
-    -ru_{i-1}^{j+1}+(1+2r)u_i^{j+1}-ru_{i+1}^{j+1}=ru_{i-1}^j+(1-2r)u_i^j+ru_{i+1}^j
+    -\alpha u_{i-1}^{n+1}+(1+2\alpha )u_i^{n+1}-\alpha u_{i+1}^{n+1}=\alpha u_{i-1}^n+(1-2\alpha )u_i^n+\alpha u_{i+1}^n
 \end{align*}
 
-This can be converted to a matrix equation $\mathbf{Au^{j+1}=Bu^j}$:
+This can be converted to a matrix equation $\mathbf{Au}^{n+1}=\mathbf{b}^n$, where
 
 \begin{align*}
-    &\left(\begin{array}{ccccccc}
-        X & & & & & &\\
-        & \ddots & & & & &\\
-        & -r & 1+2r & -r & & &\\
-        & & -r & 1+2r & -r & &\\
-        & & & -r & 1+2r & -r &\\
-        & & & & & \ddots &\\
-        & & & & & & X
-    \end{array}\right)\left(\begin{array}{c}
-        \vdots \\
-        u_{i-1}^{j+1}\\
-        u_{i}^{j+1}\\
-        u_{i+1}^{j+1}\\
-        \vdots
-    \end{array}\right)\\
-    =&
-    \left(\begin{array}{ccccccc}
-        X & & & & & &  \\
+    \mathbf{A}=\left(\begin{array}{ccccccc}
+        %1 & & & & & &\\
         & \ddots & & & & & \\
-        & r & 1-2r & r & & &\\
-        & & r & 1-2r & r & &\\
-        & & & r & 1-2r & r & \\
+        & -\alpha  & 1+2\alpha  & -\alpha  & & &\\
+        & & -\alpha  & 1+2\alpha  & -\alpha  & &\\
+        & & & -\alpha  & 1+2\alpha  & -\alpha  & \\
         & & & & & \ddots &\\
-        & & & & & & X
-    \end{array}\right)\left(\begin{array}{c}
+        %& & & & & & 1
+    \end{array}\right),\;\;\;\; \mathbf{u}^{n+1}=\left(\begin{array}{c}
         \vdots \\
-        u_{i-1}^{j}\\
-        u_{i}^{j}\\
-        u_{i+1}^{j}\\
+        u_{i-1}^{n+1}\\
+        u_{i}^{n+1}\\
+        u_{i+1}^{n+1}\\
         \vdots
     \end{array}\right)
 \end{align*}
+
+and
+
+\begin{align*}
+    \mathbf{b}_i^n=\alpha u_{i-1}^n+(1-2\alpha )u_i^n+\alpha u_{i+1}^n
+\end{align*}
+
+
 
 \subsubsection{MATLAB Code}
 
 To Be Coded
 
 \subsection{Successive over Relaxation}
+In numerical linear algebra, the method of Successive Over-Relaxation (SOR) is a variant of the Gauss-Seidel method for solving a linear system of equations, resulting in faster convergence. Devised simultaneously by David M. Young Jr. and by Stanley P. Frankel in 1950 for the purpose of automatically solving linear systems on digital computers; it has become one of the most important methods for the solution of large linear systems. 
+
+To understand the SOR method, lets first consider the Gauss-Seidel method for solving $Ax = b$;given
+
+\[
+A = \begin{pmatrix}
+ a_{11} & a_{12} & \dots & a_{1n}\\
+ a_{21} & a_{22} & \dots & a_{2n}\\
+ \vdots & \vdots & \ddots & \vdots \\ 
+ a_{n1} & a_{n2} & \dots & a_{nm} \\
+\end{pmatrix}
+, %
+ b = \begin{pmatrix}
+ b_{1} \\
+ b_{2} \\
+ \vdots \\ 
+ b_{n} \\
+\end{pmatrix}
+, %
+x = \begin{pmatrix}
+ x_{1} \\
+ x_{2} \\
+ \vdots \\ 
+ x_{n} \\
+\end{pmatrix}
+\]
+
+We can decompose A as A = D + L + U where D is the diagonal part, L the lower triangular part, U the upper triangular part.
+
+\[
+D = \begin{pmatrix}
+ a_{11} & 0 & \dots & 0 \\
+ 0 & a_{22} & \dots & 0 \\
+ \vdots & \vdots & \ddots & \vdots \\ 
+ 0 & 0 & \dots & a_{nm} \\
+\end{pmatrix}
+,%
+L = \begin{pmatrix}
+ 0 & 0 & \dots & 0 \\
+ a_{21} & 0 & \dots & 0 \\
+ \vdots & \vdots & \ddots & \vdots \\ 
+ a_{n1} & a_{n2} & \dots & 0 \\
+\end{pmatrix}
+,%
+U = \begin{pmatrix}
+ 0 & a_{12} & \dots & a_{1n}\\
+ 0 & 0 & \dots & a_{2n}\\
+ \vdots & \vdots & \ddots & \vdots \\ 
+ 0 & 0 & \dots & 0 \\
+\end{pmatrix}
+\]
+
+Using the Gauss-Seidel method; an iterative method named after the German mathematicians Carl Friedrich Gauss and Philipp Ludwig von Seidel, we can find x given by the following equation:
+\begin{equation*}
+    x_{n+1} = c - Bx_n
+\end{equation*}
+\begin{center}
+where $c = (D+L)^{-1}b$ and $B = (D+L)^{-1}U$
+\end{center}
+\vspace{-5pt}
+The Gauss-Seidel correction is known as,
+\begin{equation*}
+x_{n+1}-x_{n} = D^{-1}(b-Lx_{n+1}-Dx_n-Ux_n)
+\end{equation*}
+If we assume that the Gauss-Seidel method converges, then we have that $x_{n+1}-x_{n}\to 0$ as $n \to \infty$. In other words, $x_{n+1}-x_{n}$ takes us in the direction of the true solution. Now if we assume that $x_{n+1}-x_{n}$ takes us closer to the true solution but not all the way, then it would make sense to travel further in the same direction.\ This idea motivates the use of the SOR method. The SOR method introduces a parameter $w$ which scales the Gauss-Seidel correction, so we can travel further towards the true solution at each time step. The iteration formula for the SOR method is shown below:
+\begin{equation*}
+x_{n+1} = x_n + w(x_{n+1}-x_{n})_{GS}
+\end{equation*}
+Note that $1 \leq w \leq 2$, we use $w>1$ to put the greatest weight on the newly computed values, and if we set $w=1$ we just get the Gauss-Seidel method. Poor choice of the relaxation parameter $w$ can lead to poor convergence rates. On the other hand, a good choice of $w$ can lead to very fast convergence compared to the Jacobi or Gauss-Seidel methods. Now
+you might ask yourself, how do we determine the optimal $w$ for the SOR method?
+
+Well first we need to understand what influences the rate of convergence.
+Let us consider a general iterative method for solving $Ax = b$, which converges to the true solution.
+\begin{equation}
+    x_{n+1} = Bx_n + c
+\end{equation}
+Let $x_{*}$ denote the true solution, so that
+the size of the error at any given time step is given by:
+\begin{equation*}
+   |x_{*}-x_{n+1}| = |(Bx_{*}+c)-(Bx_{n}+c)|
+     =|B(x_{*}-x_{n})|
+\end{equation*}
+\begin{equation*}
+    = |B||(x_{*}-x_{n})|\phantom{ccccccccccccc,}
+\end{equation*}
+In other words the size of the error at the next step, is equivalent to the matrix norm of B multiplied by the size of the error at the previous step.
+If we use the same logic above, we can express the size of the error, $e_n$ at any time step as follows,
+\begin{equation*}
+    e_{n}= |x_{*}-x_{n-1}|
+    = |B|e_{n-1}
+    = |B||B|e_{n-2}
+\end{equation*}
+\begin{equation*}
+    \phantom{ccccc.}= |B|...|B|e_{0}
+\end{equation*}
+\begin{equation*}
+    \phantom{cc}= |B|^ne_0
+\end{equation*}
+Clearly, we can see that convergence is only possible when $|B|<1$. It also make sense to conclude that the smaller the $|B|$ is, the faster the rate of convergence. This matrix $B$, is often called the iteration matrix. For the SOR method we will want to choose the value of $w$, which minimises the norm of the iteration matrix. But in order to do this, we must first find an expression for the iteration matrix in the context of the SOR method.
+
+
+Let's take the iteration formula for the SOR method,
+\begin{equation*}
+x_{n+1} = x_n + w(x_{n+1}-x_{n})_{GS}
+\end{equation*}
+\begin{equation*}
+\phantom{cccccccccccccccccccccc} = x_n + wD^{-1}(b-Lx_{n+1}-Dx_n-Ux_n))
+\end{equation*}
+Multiplying both sides of the equation by $\frac{1}{w}D$ from the left and collecting the $x_{n+1}$ terms together leaves us with,
+\begin{equation*}
+\begin{pmatrix}
+L+\frac{1}{w}D\end{pmatrix}x_{n+1} = \frac{1}{w}Dx_n + (b-Dx_n-Ux_n)
+\end{equation*}
+then multiplying through by
+$\begin{pmatrix} L+\frac{1}{w}D 
+\end{pmatrix}^{-1}$,
+\vspace{-5pt}
+\begin{equation*}
+\phantom{cccccccccccccccccccccccc,} = 
+\begin{pmatrix}
+L+\frac{1}{w}D
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+\frac{1}{w}D-D-U
+\end{pmatrix}
+x_n+b)
+\end{equation*}
+\begin{equation*}
+\phantom{ccccccccccccccccccccccccccccccccccccc} = 
+\begin{pmatrix}
+L+\frac{1}{w}D
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+\frac{1}{w}D-D-U
+\end{pmatrix}
+x_n+\begin{pmatrix}
+L+\frac{1}{w}D
+\end{pmatrix}^{-1}b
+\end{equation*}
+If we compare this equation to equation (8), we can see that the iteration matrix for the SOR method is given by,
+\vspace{-2pt}
+\\$$\phantom{cccccccccccccccc}B = 
+\begin{pmatrix}L+\frac{1}{w}D
+\end{pmatrix}^{-1} 
+\begin{pmatrix}\frac{1}{w}D-D-U
+\end{pmatrix}$$
+
+While Successive-Over Relaxation (SOR) is computationally demanding for solving linear equations, it needs less storage than Gauss-Seidel, making it more efficient. As data size and problem complexity increase, serial computing struggles to keep up. Parallelizing computationally intensive tasks like SOR becomes vital. Recent advancements in data generation and problem complexity highlight the importance and relevance of SOR in solving complex problems. SOR can be applied to many fields, such as computational fluid dynamics, mathematical programming, and machine learning. SOR's efficiency and its ability to be used in parallel make it well-suited to address the growing computational demands in scientific research.
+
 
 \newpage
 
 \subsubsection{Daisy's Draft}
-In numerical linear algebra, the method of Successive Over-Relaxation (SOR) is a variant of the Gauss-Seidel method for solving a linear system of equations, resulting in faster convergence. Devised simultaneously by David M. Young Jr. and by Stanley P. Frankel in 1950 for the purpose of automatically solving linear systems on digital computers; it has become one of the most important methods for the solution of large linear systems. 
-Given a square system of n linear equations with unknown x : Ax=b where  
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{image.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-\end{figure}
 
-we use the method of successive over-relaxation which is an iterative technique to solve for x. To do this we can decompose A as A = D + L + U  where
-D is the diagonal part, L the lower triangular part, U the upper triangular part. Where The system of linear equations may be rewritten as:
+An improved version of SOR, called Projected SOR (PSOR), is even more efficient for problems with moving boundaries or options valuation. 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{image2.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-\end{figure}
-
-$(D+L)x = b- Ux$
-
-Now to obtain the Gauss-Seidel scheme we make it iterative
-
-$X^{k+1} = (D+L)^{-1}(b-Ux^K)$
-
-Now the SOR variation of  Gauss-Seidel is achieved by implementing a relaxation parameter/factor into the scheme and setting 
-
-$X_0^{k+1}=(D+L)^{-1}(b-Ux^K)$
-
-$X^{k+1} = \omega x_0^k+1+x^k(1-\omega)$
-
-Poor choice of the relaxation parameter $\omega$ can lead to poor convergence rates. On the other hand, a good choice of $\omega$ can lead to very fast convergence compared to the Jacobi or Gauss-Seidel methods. The spectral radius of BSOR is the eigenvalue of BSOR with maximum magnitude, and we want to choose $\omega$ so that $|\rho(BSOR (\omega))|$ is a minimum. Finding the optimal value of $\omega$ is very difficult in general, and the optimal value is known only for special types of matrices.
-We use $w>1$ to put the greatest weight on the newly computed values. If $\vert BSOR \vert>1$ for some subordinate norm or $\rho(BSOR)<1$, the SOR iteration converges. 
-
+\subsection{parameter choices/PSOR}
+ write section on why error is smaller with sor rather than backslash method!!
+ 
 Over-Relaxation methods were used before the work of Young and Frankel however these previous methods were designed for computation by human calculators which required some expertise to ensure convergence to the solution meaning they were inapplicable for programming on digital computers. An example of this would be the work of Lewis Fry Richardson, and the methods developed by R.V. Southwell. The SOR method has applications in many areas such as computational fluid dynamics, mathematical programming, medical analysis, and machine learning etc.
 There is a Projected  Successive Over-Relaxation (PSOR) variation which is obtained by taking the relevant maximum of equation ***** with the option payoff function. These methods work provided the matrix is diagonally dominant and $0 < w < 2$.  Projected Successive Over-Relaxation (PSOR) can be notably enhanced by considering the intrinsic physical characteristics of the specific problem at hand. This improvement can be demonstrated in scenarios involving LCPs related to Moving Boundary Problems and the Valuation of American Options. These types of problems often necessitate a time-stepping approach, wherein a series of discrete LCPs must be solved, each corresponding to a specific time step. Within such contexts, there exists a dynamic boundary separating distinct domains with varying solution properties. By separating the problem into distinct boundaries, PSOR can be effectively applied to tasks with lower dimensions. This leads to a newly developed iterative approach that speeds up the process by up to 50\% when compared to traditional PSOR methods.
 
-While Successive-Over Relaxation (SOR) is computationally demanding for solving linear equations, it needs less storage than Gauss-Seidel, making it more efficient. As data size and problem complexity increase, serial computing struggles to keep up. Parallelizing computationally intensive tasks like SOR becomes vital. Recent advancements in data generation and problem complexity highlight the importance and relevance of SOR in solving complex problems.
-
-The Successive Over-Relaxation (SOR) method is now widely used in numerical linear algebra. It can solve large linear systems faster than other methods. It uses a relaxation parameter to make it more efficient. SOR can be applied to many fields, such as computational fluid dynamics, mathematical programming, and machine learning. An improved version of SOR, called Projected SOR (PSOR), is even more efficient for problems with moving boundaries or options valuation. SOR's efficiency and its ability to be used in parallel make it well-suited to address the growing computational demands in scientific research.
-
-\section{Week 3 Tasks} % To be removed when tasks below are completed
+\section{Discussions and  Conclusions} % To be removed when tasks below are completed
 
 \subsection{Von Neumann stability analysis}
+
+The Von-Neumann stability analysis is a mathematical technique used to analyse the stability of numerical methods, particularly in the context of solving partial differential equations. Its aim is to prevent the growth of round-off error and initially small fluctuations in data by finding necessary and sufficient conditions, in order to prevent a large deviation of final answers from the exact solution. The method is strictly only valid for interior points, (i.e. excluding boundary conditions).
+
+%write section in relation to why this is useful for our report
+
+Consider the diffusion equation 
+
+$\frac{\partial u}{\partial \tau}=\frac{\partial^2u}{\partial x^2}$\\
+
+\subsection{Stability analsysis of FTCS scheme}
+
+Using the FTCS method the discretised form of the diffusion equation is 
+
+
+\begin{align*}
+
+${u_i^{j+1}=u_i^{j}+\lambda({{u_{i+1}^j}-2u_i^j+u_{i-1}^j})$\\
+
+where ${\lambda} =\frac{\Delta t}{\Delta x^2}$ 
+
+\end{align*}
+
+We can then assume the error \epsilon_i^{j} = U_j^{n} - u_j^{n}
+
+where $U_j^{n}$ is the numerical solution and $u_j^{n}$ follows the discretized ODE equation 
+
+${\epsilon_i^{j+1}=\epsilon_i^{j}+\lambda({{\epsilon_{i+1}^j}-2\epsilon_i^j+\epsilon_{i-1}^j})$\\ 
+
+Since the error and the numerical solution show the same growth or decay with respect to time, the spatial variation of error may be expanded into a finite Fourier 
+
+
 
 \subsection{Complete SOR}
 
 \subsection{Complete CN}
+
+\section{Statement of Contribution}
+
+
+
 \section{References}
+
+
+
+
+
+
+\section{A}
+\section{Introduction}
+
+- include outline of results
 
 
 
